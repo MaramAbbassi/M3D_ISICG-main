@@ -195,5 +195,7 @@
     <None Include="src\lab_works\lab_work_3\shaders\lw3.vert" />
     <None Include="src\lab_works\lab_work_4\shaders\mesh.vert" />
     <None Include="src\lab_works\lab_work_4\shaders\mesh.frag" />
+    <None Include="src\lab_works\lab_work_5\shaders\mesh_texture.vert" />
+    <None Include="src\lab_works\lab_work_5\shaders\mesh_texture.frag" />
   </ItemGroup>
 </Project>

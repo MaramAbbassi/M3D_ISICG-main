@@ -1,5 +1,10 @@
 #include "triangle_mesh_model.hpp"
+#include "common/camera.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/gtx/string_cast.hpp"
 #include "utils/image.hpp"
+#include <glm/glm.hpp>
 #include <iostream>
 
 namespace M3D_ISICG
@@ -33,6 +38,9 @@ namespace M3D_ISICG
 			_loadMesh( scene->mMeshes[ i ], scene );
 		}
 		_meshes.shrink_to_fit();
+		std::partition( _meshes.begin(),
+						_meshes.end(),
+						[]( const TriangleMesh & p_mesh ) -> bool { return p_mesh._material._isOpaque; } );
 
 		std::cout << "Done! "						//
 				  << _meshes.size() << " meshes, "	//
@@ -42,6 +50,7 @@ namespace M3D_ISICG
 
 	void TriangleMeshModel::render( const GLuint p_glProgram ) const
 	{
+		Camera _camera;
 		for ( size_t i = 0; i < _meshes.size(); i++ )
 		{
 			_meshes[ i ].render( p_glProgram );
@@ -181,6 +190,16 @@ namespace M3D_ISICG
 			material._diffuse = Vec3f( color.r, color.g, color.b );
 		}
 		// =====================================================
+		if ( p_mtl->GetTextureCount( aiTextureType_NORMALS ) > 0 ) // Texture ?
+		{
+			p_mtl->GetTexture( aiTextureType_NORMALS, 0, &texturePath );
+			texture = _loadTexture( texturePath, "normal" );
+			if ( texture._id != GL_INVALID_INDEX )
+			{
+				material._normalMap	   = texture;
+				material._hasNormalMap = true;
+			}
+		}
 
 		// ===================================================== SPECULAR
 		if ( p_mtl->GetTextureCount( aiTextureType_SPECULAR ) > 0 ) // Texture ?
@@ -216,6 +235,9 @@ namespace M3D_ISICG
 			material._shininess = shininess;
 		}
 
+		if ( p_mtl->GetTextureCount( aiTextureType_OPACITY ) > 0 ) // alpha channel ?
+			material._isOpaque = false;
+
 		// =====================================================
 
 		return material;
@@ -234,13 +256,11 @@ namespace M3D_ISICG
 			if ( std::strcmp( _loadedTextures[ i ]._path.data(), path ) == 0 )
 			{
 				if ( VERBOSE )
-				{
 					std::cout << "-> Already loaded !" << std::endl;
-				}
+
 				if ( _loadedTextures[ i ]._type == p_type )
-				{
 					return _loadedTextures[ i ];
-				}
+
 				else // One texture can be used for more than one type.
 				{
 					Texture texture;
@@ -290,15 +310,18 @@ namespace M3D_ISICG
 			}
 
 			// Setup the texture format.
-			glTextureStorage2D( texture._id, 1, internalFormat, image._width, image._height );
+			int nbNiveauMipmap = glm::floor( glm::log2( (float)glm::max( image._width, image._height ) ) ) + 1;
+			glTextureStorage2D( texture._id, nbNiveauMipmap, internalFormat, image._width, image._height );
 			glTextureParameteri( texture._id, GL_TEXTURE_WRAP_S, GL_REPEAT );
 			glTextureParameteri( texture._id, GL_TEXTURE_WRAP_T, GL_REPEAT );
-			glTextureParameteri( texture._id, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-			glTextureParameteri( texture._id, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+			glTextureParameteri( texture._id, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+			glTextureParameteri( texture._id, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR );
 
 			// Fill the texture.
 			glTextureSubImage2D(
 				texture._id, 0, 0, 0, image._width, image._height, format, GL_UNSIGNED_BYTE, image._pixels );
+
+			glGenerateTextureMipmap( texture._id );
 		}
 
 		// Save loaded texture.
