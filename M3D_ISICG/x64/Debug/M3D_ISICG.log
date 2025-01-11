@@ -1,6 +1,6 @@
 ﻿  lab_work_6.cpp
-C:\Users\MARAM\Desktop\M3D_ISICG-main (1) 2\M3D_ISICG-main\src\lab_works\lab_work_6\lab_work_6.cpp(360,23): warning C4267: 'argument': conversion from 'size_t' to 'GLuint', possible loss of data
-C:\Users\MARAM\Desktop\M3D_ISICG-main (1) 2\M3D_ISICG-main\src\lab_works\lab_work_6\lab_work_6.cpp(447,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\MARAM\Desktop\M3D_ISICG-main (1) 2\M3D_ISICG-main\src\lab_works\lab_work_6\lab_work_6.cpp(359,23): warning C4267: 'argument': conversion from 'size_t' to 'GLuint', possible loss of data
+C:\Users\MARAM\Desktop\M3D_ISICG-main (1) 2\M3D_ISICG-main\src\lab_works\lab_work_6\lab_work_6.cpp(446,45): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   M3D_ISICG.vcxproj -> C:\Users\MARAM\Desktop\M3D_ISICG-main (1) 2\M3D_ISICG-main\x64\Debug\M3D_ISICG.exe
   0 fichier(s) copié(s)
   0 fichier(s) copié(s)

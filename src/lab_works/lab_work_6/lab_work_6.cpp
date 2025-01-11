@@ -136,8 +136,7 @@ namespace M3D_ISICG
 				outTexture = GL_COLOR_ATTACHMENT0;
 			if ( ImGui::Selectable( "Normales", outTexture == GL_COLOR_ATTACHMENT1 ) )
 				outTexture = GL_COLOR_ATTACHMENT1;
-			if ( ImGui::Selectable( "Color_Ambient", outTexture == GL_COLOR_ATTACHMENT2 ) )
-				outTexture = GL_COLOR_ATTACHMENT2;
+			
 			if ( ImGui::Selectable( "Color_Diffuse", outTexture == GL_COLOR_ATTACHMENT3 ) )
 				outTexture = GL_COLOR_ATTACHMENT3;
 			if ( ImGui::Selectable( "Color_Spec", outTexture == GL_COLOR_ATTACHMENT4 ) )

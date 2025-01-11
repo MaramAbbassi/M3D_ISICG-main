@@ -73,7 +73,7 @@ namespace M3D_ISICG
 
 		GLuint _geometryPassProgram; 
 		GLuint _shadingPassProgram;
-		GLenum outTexture = GL_COLOR_ATTACHMENT1; 
+		GLenum outTexture = GL_COLOR_ATTACHMENT0; 
 
 		GLuint _vbo		 = GL_INVALID_INDEX;
 		GLuint _vao		 = GL_INVALID_INDEX;
