@@ -6,6 +6,10 @@
 #include "lab_work_2/lab_work_2.hpp"
 #include "lab_work_3/lab_work_3.hpp"
 #include "lab_work_4/lab_work_4.hpp"
+#include "lab_work_5/lab_work_5.hpp"
+#include "lab_work_6/lab_work_6.hpp"
+
+
 
 
 namespace M3D_ISICG
@@ -19,7 +23,9 @@ namespace M3D_ISICG
 			LAB_WORK_2 = 2,
 			LAB_WORK_3 = 3,
 			LAB_WORK_4 = 4,
-			LAB_WORK_5 = 5
+			LAB_WORK_5 = 5,
+			LAB_WORK_6 = 6
+
 		};
 
 	  public:

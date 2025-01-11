@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\lab_works\lab_work_6\lab_work_6.cpp" />
     <ClCompile Include="src\lab_works\lab_work_2\lab_work_2.cpp" />
     <ClCompile Include="lib\gl3w\GL\gl3w.c" />
     <ClCompile Include="lib\imgui\backends\imgui_impl_opengl3.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="src\utils\image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\lab_works\lab_work_6\lab_work_6.hpp" />
     <ClInclude Include="src\lab_works\lab_work_2\lab_work_2.hpp" />
     <ClInclude Include="lib\gl3w\GL\gl3w.h" />
     <ClInclude Include="lib\gl3w\GL\glcorearb.h" />
@@ -76,6 +78,10 @@
     <None Include="src\lab_works\lab_work_4\shaders\mesh.vert" />
     <None Include="src\lab_works\lab_work_5\shaders\mesh_texture.frag" />
     <None Include="src\lab_works\lab_work_5\shaders\mesh_texture.vert" />
+    <None Include="src\lab_works\lab_work_6\shaders\geometry_pass.frag" />
+    <None Include="src\lab_works\lab_work_6\shaders\geometry_pass.vert" />
+    <None Include="src\lab_works\lab_work_6\shaders\shading_pass.frag" />
+    <None Include="src\lab_works\lab_work_6\shaders\shading_pass.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
